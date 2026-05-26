@@ -144,7 +144,7 @@ def generate_image(prompt: str, model: str = "google/gemini-2.5-flash-image") ->
         print(f"❌ Error parsing image generation response: {e}")
         return None
 
-def generate_image_entrypoint(text_prompt: str, input_image_path: str = None, image_model: str = "black-forest-labs/flux.2-max"):
+def generate_image_entrypoint(text_prompt: str, input_image_path: str = None, image_model: str = "google/gemini-3.1-flash-image-preview"):
     """
     Main entrypoint function.
     Accepts text and an optional image, processes them, and generates a new image.
@@ -157,7 +157,7 @@ def generate_image_entrypoint(text_prompt: str, input_image_path: str = None, im
     final_prompt = process_multimodal_prompt(text_prompt, input_image_path)
     print(f"📝 Optimized Image Prompt: {final_prompt}\n")
     
-    image_url = generate_image(final_prompt, model="google/gemini-3.1-flash-image-preview")
+    image_url = generate_image(final_prompt, model=image_model)
     
     if image_url:
        print(f"✨ Success! Your image has been generated.")
@@ -168,7 +168,7 @@ def generate_image_entrypoint(text_prompt: str, input_image_path: str = None, im
 if __name__ == "__main__":
     # Example 1: Text-only prompt
     generate_image_entrypoint(
-        text_prompt="A futuristic cyberpunk city street neon lights, rainy night, cinematic cinematography"
+        text_prompt="Hyper-realistic image of an indoor industrial environment after an earthquake. Looks like it was taken from DSLR camera."
     )
     
     # Example 2: Text + Image prompt (uncomment to use)
